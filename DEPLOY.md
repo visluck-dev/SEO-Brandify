@@ -50,14 +50,15 @@ Your site will be available at:
 For example, if your username is `john` and repo is `SEO-Brandify`:
 - `https://john.github.io/SEO-Brandify/`
 
-### 5. Custom Domain (Optional)
+### 5. Custom Domain (visluck.com)
 
-If you have a custom domain:
+**See [CUSTOM_DOMAIN_SETUP.md](./CUSTOM_DOMAIN_SETUP.md) for detailed Hostinger DNS setup instructions.**
 
+Quick steps:
 1. In your repository **Settings** → **Pages**
-2. Under **Custom domain**, enter your domain (e.g., `example.com`)
-3. Add a `CNAME` file in the `client/public/` directory with your domain name
-4. Update your DNS records as instructed by GitHub
+2. Under **Custom domain**, enter: `visluck.com`
+3. Configure DNS on Hostinger (see detailed guide)
+4. Wait for DNS propagation and SSL certificate
 
 ## Automatic Deployment
 
