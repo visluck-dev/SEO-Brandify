@@ -1,4 +1,4 @@
-// Static website - minimal schema needed
+// Static website - minimal schema for type definitions
 // All content is in client-side constants
 
 import { z } from "zod";
