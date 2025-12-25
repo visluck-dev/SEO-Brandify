@@ -1,19 +1,10 @@
-import { db } from "./db";
-import {
-  contactRequests,
-  type InsertContactRequest,
-  type ContactRequest
-} from "@shared/schema";
+// Static website - no storage needed
+// All data is in client/src/constants
 
 export interface IStorage {
-  createContactRequest(request: InsertContactRequest): Promise<ContactRequest>;
+  // Placeholder
 }
 
-export class DatabaseStorage implements IStorage {
-  async createContactRequest(request: InsertContactRequest): Promise<ContactRequest> {
-    const [newItem] = await db.insert(contactRequests).values(request).returning();
-    return newItem;
-  }
-}
+export class MemStorage implements IStorage {}
 
-export const storage = new DatabaseStorage();
+export const storage = new MemStorage();

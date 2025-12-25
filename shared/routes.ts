@@ -1,26 +1,22 @@
-import { z } from 'zod';
-import { insertContactRequestSchema, contactRequests } from './schema';
+import { z } from "zod";
 
-export const errorSchemas = {
-  validation: z.object({
-    message: z.string(),
-    field: z.string().optional(),
-  }),
-  internal: z.object({
-    message: z.string(),
-  }),
-};
-
+// Static website - minimal API definitions for compatibility
 export const api = {
   contact: {
     submit: {
       method: 'POST' as const,
       path: '/api/contact',
-      input: insertContactRequestSchema,
+      input: z.object({
+        name: z.string(),
+        email: z.string(),
+        phone: z.string().optional(),
+        subject: z.string().optional(),
+        message: z.string(),
+      }),
       responses: {
-        201: z.custom<typeof contactRequests.$inferSelect>(),
-        400: errorSchemas.validation,
-        500: errorSchemas.internal,
+        201: z.any(),
+        400: z.object({ message: z.string() }),
+        500: z.object({ message: z.string() }),
       },
     },
   },
@@ -37,5 +33,3 @@ export function buildUrl(path: string, params?: Record<string, string | number>)
   }
   return url;
 }
-
-export type ContactRequestInput = z.infer<typeof api.contact.submit.input>;

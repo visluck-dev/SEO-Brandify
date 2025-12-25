@@ -1,29 +1,12 @@
 import type { Express } from "express";
 import type { Server } from "http";
-import { storage } from "./storage";
-import { api } from "@shared/routes";
-import { z } from "zod";
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // All content is static, served via static files
+  // No dynamic routes needed
   
-  app.post(api.contact.submit.path, async (req, res) => {
-    try {
-      const input = api.contact.submit.input.parse(req.body);
-      const request = await storage.createContactRequest(input);
-      res.status(201).json(request);
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        return res.status(400).json({
-          message: err.errors[0].message,
-          field: err.errors[0].path.join('.'),
-        });
-      }
-      throw err;
-    }
-  });
-
   return httpServer;
 }

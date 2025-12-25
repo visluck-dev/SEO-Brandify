@@ -1,21 +1,12 @@
-import { pgTable, text, serial, timestamp, boolean } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
+// Static website - minimal schema needed
+// All content is in client-side constants
+
 import { z } from "zod";
 
-export const contactRequests = pgTable("contact_requests", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  email: text("email").notNull(),
-  phone: text("phone"),
-  subject: text("subject"),
-  message: text("message").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
+// Basic page metadata
+export const pageSchema = z.object({
+  title: z.string(),
+  description: z.string(),
 });
 
-export const insertContactRequestSchema = createInsertSchema(contactRequests).omit({ 
-  id: true, 
-  createdAt: true 
-});
-
-export type ContactRequest = typeof contactRequests.$inferSelect;
-export type InsertContactRequest = z.infer<typeof insertContactRequestSchema>;
+export type PageMeta = z.infer<typeof pageSchema>;

@@ -1,0 +1,58 @@
+export const CAREER_OPENINGS = [
+  {
+    id: 1,
+    title: 'Senior HR Consultant',
+    department: 'Consulting',
+    location: 'New York, NY',
+    type: 'Full-time',
+    description: 'Lead HR consulting projects for Fortune 500 clients. 5+ years experience required.',
+    requirements: [
+      '5+ years HR consulting experience',
+      'SHRM certification preferred',
+      'Strong communication skills',
+      'Project management expertise',
+    ],
+  },
+  {
+    id: 2,
+    title: 'Recruitment Specialist',
+    department: 'Recruitment',
+    location: 'San Francisco, CA',
+    type: 'Full-time',
+    description: 'Manage end-to-end recruitment for technical and executive roles.',
+    requirements: [
+      '3+ years recruitment experience',
+      'Technical recruiting background',
+      'Excellent sourcing skills',
+      'CRM proficiency',
+    ],
+  },
+  {
+    id: 3,
+    title: 'HR Analytics Specialist',
+    department: 'Analytics',
+    location: 'Chicago, IL',
+    type: 'Full-time',
+    description: 'Build and analyze HR metrics dashboards. Data visualization expertise needed.',
+    requirements: [
+      'Strong Excel/SQL skills',
+      'Data visualization experience',
+      'HR domain knowledge',
+      '2+ years analytics experience',
+    ],
+  },
+  {
+    id: 4,
+    title: 'Training & Development Manager',
+    department: 'Learning',
+    location: 'Remote',
+    type: 'Full-time',
+    description: 'Design and deliver corporate training programs for diverse client base.',
+    requirements: [
+      'Instructional design background',
+      '4+ years training experience',
+      'LMS platform expertise',
+      'Strong presentation skills',
+    ],
+  },
+];
