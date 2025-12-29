@@ -12,15 +12,10 @@ export const NAV_LINKS = [
 ];
 
 export const CONTACT_INFO = {
-  email1: 'info@visluck.com',
-  email2: 'contact@visluck.com',
-  email3: 'careers@visluck.com',
-  phone: '+1 (555) 123-4567',
-  address: '123 Business Park, Suite 100, New York, NY 10001',
+  email: 'hr@visluck.com',
+  phone: '+91 8868972697',
 };
 
 export const SOCIAL_LINKS = [
   { platform: 'linkedin', url: 'https://linkedin.com/company/visluck' },
-  { platform: 'twitter', url: 'https://twitter.com/visluck' },
-  { platform: 'facebook', url: 'https://facebook.com/visluck' },
 ];

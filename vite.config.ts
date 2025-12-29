@@ -21,24 +21,20 @@ export default defineConfig(async () => {
     plugins.push(runtimeErrorOverlay(), cartographer(), devBanner());
   }
   
-  // Base path for GitHub Pages (set via BASE_PATH env var, defaults to root)
-  const base = process.env.BASE_PATH || '/';
-  
   return {
-    base,
     plugins,
-    resolve: {
-      alias: {
-        "@": path.resolve(__dirname, "client", "src"),
-        "@shared": path.resolve(__dirname, "shared"),
-        "@assets": path.resolve(__dirname, "attached_assets"),
-      },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "client", "src"),
+      "@shared": path.resolve(__dirname, "shared"),
+      "@assets": path.resolve(__dirname, "attached_assets"),
     },
-    root: path.resolve(__dirname, "client"),
-    build: {
-      outDir: path.resolve(__dirname, "dist"),
-      emptyOutDir: true,
-    },
+  },
+  root: path.resolve(__dirname, "client"),
+  build: {
+    outDir: path.resolve(__dirname, "dist"),
+    emptyOutDir: true,
+  },
     server: {
       fs: {
         strict: true,

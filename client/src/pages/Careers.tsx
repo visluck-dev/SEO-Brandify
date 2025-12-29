@@ -25,9 +25,9 @@ export default function Careers() {
                 Send your resume to our careers email, and we'll keep it on file for future opportunities.
               </p>
               <div className="pt-4">
-                <a href="mailto:careers@visluck.com">
+                <a href="mailto:hr@visluck.com">
                   <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full">
-                    Email Resume to careers@visluck.com
+                    Email Resume to hr@visluck.com
                   </Button>
                 </a>
               </div>

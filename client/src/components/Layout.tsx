@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Phone, Mail, MapPin, Linkedin, Facebook, Twitter } from "lucide-react";
+import { Menu, X, Phone, Mail, Linkedin } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -25,25 +25,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <div className="bg-primary text-primary-foreground text-xs py-2 px-4 hidden md:block">
         <div className="container mx-auto max-w-7xl flex justify-between items-center">
           <div className="flex space-x-6">
-            <span className="flex items-center gap-2"><Phone className="h-3 w-3" /> +1 (555) 123-4567</span>
-            <span className="flex items-center gap-2"><Mail className="h-3 w-3" /> info@visluck.com</span>
+            <span className="flex items-center gap-2"><Phone className="h-3 w-3" /> +91 8868972697</span>
+            <span className="flex items-center gap-2"><Mail className="h-3 w-3" /> hr@visluck.com</span>
           </div>
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-secondary transition-colors"><Linkedin className="h-3 w-3" /></a>
-            <a href="#" className="hover:text-secondary transition-colors"><Facebook className="h-3 w-3" /></a>
-            <a href="#" className="hover:text-secondary transition-colors"><Twitter className="h-3 w-3" /></a>
+            <a href="https://linkedin.com/company/visluck" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors"><Linkedin className="h-3 w-3" /></a>
           </div>
         </div>
       </div>
 
       {/* Navbar */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
-        <div className="container mx-auto max-w-7xl px-4 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="h-10 w-10 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center text-white font-display font-bold text-xl shadow-lg">
-              V
-            </div>
-            <span className="font-display font-bold text-2xl text-primary tracking-tight">VisLuck</span>
+        <div className="container mx-auto max-w-7xl px-4 h-14 md:h-16 flex items-center justify-between">
+          <Link href="/" className="flex flex-col items-start group leading-none">
+            <span className="font-display font-bold text-primary text-base sm:text-lg md:text-xl leading-tight transition-colors group-hover:text-secondary">
+              VisLuck
+            </span>
+            <span className="font-body text-[8px] sm:text-[9px] md:text-[10px] text-muted-foreground font-medium tracking-wider uppercase leading-tight mt-0.5">
+              WHERE VISION BEATS LUCK
+            </span>
           </Link>
 
           {/* Desktop Nav */}
@@ -116,9 +116,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
           
           {/* Brand Column */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 bg-white text-primary rounded-md flex items-center justify-center font-display font-bold text-lg">V</div>
-              <span className="font-display font-bold text-xl text-white">VisLuck</span>
+            <div className="flex flex-col leading-none">
+              <span className="font-display font-bold text-xl md:text-2xl text-white leading-tight">VisLuck</span>
+              <span className="font-body text-[10px] md:text-xs text-primary-foreground/70 font-medium tracking-wider uppercase leading-tight mt-1">
+                WHERE VISION BEATS LUCK
+              </span>
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
               Your strategic partner in HR excellence. We help organizations build, manage, and optimize their workforce for sustainable growth.
@@ -152,17 +154,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div>
             <h3 className="font-display font-bold text-lg mb-6 text-secondary">Contact</h3>
             <ul className="space-y-4 text-sm text-primary-foreground/80">
-              <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-secondary shrink-0" />
-                <span>123 Business Park, Suite 400<br/>New York, NY 10001</span>
-              </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-secondary shrink-0" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 8868972697</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-secondary shrink-0" />
-                <span>contact@visluck.com</span>
+                <span>hr@visluck.com</span>
               </li>
             </ul>
           </div>

@@ -31,18 +31,6 @@ npm run build
 
 This will create a static site in the `dist/` directory that can be deployed to any static hosting service (Netlify, Vercel, GitHub Pages, etc.).
 
-## Deployment
-
-### GitHub Pages
-
-See [DEPLOY.md](./DEPLOY.md) for detailed step-by-step instructions on deploying to GitHub Pages.
-
-Quick steps:
-1. Create a GitHub repository
-2. Push your code
-3. Enable GitHub Pages in repository settings (use GitHub Actions)
-4. Your site will auto-deploy on every push to `main` branch
-
 ### 4. Preview Production Build
 
 ```bash

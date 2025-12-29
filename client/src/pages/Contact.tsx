@@ -3,26 +3,40 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { Phone, Mail, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { sendContactEmail } from "@/lib/emailjs";
 
 export default function Contact() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       toast({ title: "Error", description: "Please fill all required fields", variant: "destructive" });
       return;
     }
+    
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      toast({ title: "Success", description: "Thank you for contacting VisLuck. We will get back to you shortly." });
+    try {
+      await sendContactEmail(formData);
+      toast({ 
+        title: "Success", 
+        description: "Thank you for contacting VisLuck. We will get back to you shortly." 
+      });
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    }, 500);
+    } catch (error) {
+      console.error("Failed to send message:", error);
+      toast({ 
+        title: "Error", 
+        description: "Failed to send message. Please try again later or contact us directly.", 
+        variant: "destructive" 
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -47,24 +61,17 @@ export default function Contact() {
               </div>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="bg-secondary/10 p-3 rounded-lg text-secondary"><MapPin className="h-6 w-6" /></div>
-                  <div>
-                    <h3 className="font-bold text-foreground">Our Location</h3>
-                    <p className="text-muted-foreground">123 Business Park, Suite 400<br/>New York, NY 10001</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
                   <div className="bg-secondary/10 p-3 rounded-lg text-secondary"><Mail className="h-6 w-6" /></div>
                   <div>
                     <h3 className="font-bold text-foreground">Email Us</h3>
-                    <p className="text-muted-foreground">info@visluck.com | contact@visluck.com | careers@visluck.com</p>
+                    <p className="text-muted-foreground">hr@visluck.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="bg-secondary/10 p-3 rounded-lg text-secondary"><Phone className="h-6 w-6" /></div>
                   <div>
                     <h3 className="font-bold text-foreground">Call Us</h3>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="text-muted-foreground">+91 8868972697</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
