@@ -1,6 +1,7 @@
 import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import { CONTACT_INFO } from "@/constants/navigation";
+import { OPERATIONAL_PARTNER_LEGAL_NAME } from "@/constants/legal";
 
 export default function Careers() {
   return (
@@ -24,10 +25,13 @@ export default function Careers() {
                 We don't have any specific openings right now, but we'd still love to hear from you. 
                 Send your resume to our careers email, and we'll keep it on file for future opportunities.
               </p>
+              <p className="text-sm text-muted-foreground">
+                {OPERATIONAL_PARTNER_LEGAL_NAME} supplies operational capacity and is not a hiring employer. Applications are received under the VisLuck trading name.
+              </p>
               <div className="pt-4">
-                <a href="mailto:hr@visluck.com">
+                <a href={CONTACT_INFO.emailHref}>
                   <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full">
-                    Email Resume to hr@visluck.com
+                    Email Resume to {CONTACT_INFO.email}
                   </Button>
                 </a>
               </div>

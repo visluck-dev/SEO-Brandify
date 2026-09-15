@@ -13,7 +13,9 @@ export const NAV_LINKS = [
 
 export const CONTACT_INFO = {
   email: 'hr@visluck.com',
-  phone: '+91 8868972697',
+  phone: '+44 7344 873257',
+  phoneHref: 'tel:+447344873257',
+  emailHref: 'mailto:hr@visluck.com',
 };
 
 export const SOCIAL_LINKS = [

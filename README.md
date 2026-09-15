@@ -58,7 +58,8 @@ All website content is stored in the `client/src/constants/` directory:
 - `services.ts` - Service listings
 - `testimonials.ts` - Client testimonials
 - `careers.ts` - Career listings
-- `navigation.ts` - Navigation structure
+- `navigation.ts` - Navigation structure and public contact details
+- `legal.ts` - Trading name and Athena Infotech Limited operational-partner disclosure
 
 Edit these files to update the website content.
 

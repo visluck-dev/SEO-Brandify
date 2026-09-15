@@ -1,5 +1,6 @@
 import { SEO } from "@/components/SEO";
 import { CheckCircle2 } from "lucide-react";
+import { OperationalPartnerDisclosure } from "@/components/OperationalPartnerDisclosure";
 
 export default function About() {
   return (
@@ -73,6 +74,12 @@ export default function About() {
                 </ul>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="py-20">
+          <div className="container mx-auto max-w-7xl px-4">
+            <OperationalPartnerDisclosure />
           </div>
         </section>
       </div>

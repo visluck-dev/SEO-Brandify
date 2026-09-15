@@ -3,3 +3,4 @@ export * from './services';
 export * from './testimonials';
 export * from './careers';
 export * from './content';
+export * from './legal';

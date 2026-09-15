@@ -3,9 +3,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, Clock } from "lucide-react";
+import { Phone, Mail, Clock, ChevronRight, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { sendContactEmail } from "@/lib/emailjs";
+import { CONTACT_INFO } from "@/constants/navigation";
+import { OPERATIONAL_PARTNER_REGISTERED_OFFICE } from "@/constants/legal";
+import { OperationalPartnerDisclosure } from "@/components/OperationalPartnerDisclosure";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -64,14 +67,35 @@ export default function Contact() {
                   <div className="bg-secondary/10 p-3 rounded-lg text-secondary"><Mail className="h-6 w-6" /></div>
                   <div>
                     <h3 className="font-bold text-foreground">Email Us</h3>
-                    <p className="text-muted-foreground">hr@visluck.com</p>
+                    <a href={CONTACT_INFO.emailHref} className="text-muted-foreground hover:text-primary">
+                      {CONTACT_INFO.email}
+                    </a>
                   </div>
                 </div>
+                <a
+                  href={CONTACT_INFO.phoneHref}
+                  className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-white px-4 py-3 shadow-sm hover:border-primary/30 transition-colors"
+                  aria-label={`Call VisLuck on ${CONTACT_INFO.phone}`}
+                >
+                  <span className="flex items-center gap-3 text-foreground">
+                    <span className="bg-secondary/10 p-2.5 rounded-lg text-secondary">
+                      <Phone className="h-5 w-5" />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-bold">Call Us</span>
+                      <span className="text-muted-foreground">{CONTACT_INFO.phone}</span>
+                    </span>
+                  </span>
+                  <ChevronRight className="h-5 w-5 text-muted-foreground shrink-0" />
+                </a>
                 <div className="flex items-start gap-4">
-                  <div className="bg-secondary/10 p-3 rounded-lg text-secondary"><Phone className="h-6 w-6" /></div>
+                  <div className="bg-secondary/10 p-3 rounded-lg text-secondary"><MapPin className="h-6 w-6" /></div>
                   <div>
-                    <h3 className="font-bold text-foreground">Call Us</h3>
-                    <p className="text-muted-foreground">+91 8868972697</p>
+                    <h3 className="font-bold text-foreground">Registered office</h3>
+                    <p className="text-muted-foreground">{OPERATIONAL_PARTNER_REGISTERED_OFFICE}</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Companies House address for Athena Infotech Limited. Postal town is Staines-upon-Thames, not London.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -82,6 +106,7 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
+              <OperationalPartnerDisclosure />
             </div>
             <div className="bg-white p-8 md:p-10 rounded-3xl shadow-lg border border-border">
               <h2 className="text-2xl font-display font-bold text-primary mb-6">Send us a Message</h2>

@@ -3,6 +3,8 @@ import { Menu, X, Phone, Mail, Linkedin } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { CONTACT_INFO, SOCIAL_LINKS } from "@/constants/navigation";
+import { OperationalPartnerDisclosure } from "@/components/OperationalPartnerDisclosure";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,11 +27,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <div className="bg-primary text-primary-foreground text-xs py-2 px-4 hidden md:block">
         <div className="container mx-auto max-w-7xl flex justify-between items-center">
           <div className="flex space-x-6">
-            <span className="flex items-center gap-2"><Phone className="h-3 w-3" /> +91 8868972697</span>
-            <span className="flex items-center gap-2"><Mail className="h-3 w-3" /> hr@visluck.com</span>
+            <a href={CONTACT_INFO.phoneHref} className="flex items-center gap-2 hover:text-secondary transition-colors">
+              <Phone className="h-3 w-3" /> {CONTACT_INFO.phone}
+            </a>
+            <a href={CONTACT_INFO.emailHref} className="flex items-center gap-2 hover:text-secondary transition-colors">
+              <Mail className="h-3 w-3" /> {CONTACT_INFO.email}
+            </a>
           </div>
           <div className="flex space-x-4">
-            <a href="https://linkedin.com/company/visluck" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors"><Linkedin className="h-3 w-3" /></a>
+            <a href={SOCIAL_LINKS[0].url} target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors"><Linkedin className="h-3 w-3" /></a>
           </div>
         </div>
       </div>
@@ -154,20 +160,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div>
             <h3 className="font-display font-bold text-lg mb-6 text-secondary">Contact</h3>
             <ul className="space-y-4 text-sm text-primary-foreground/80">
-              <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-secondary shrink-0" />
-                <span>+91 8868972697</span>
+              <li>
+                <a href={CONTACT_INFO.phoneHref} className="flex items-center gap-3 hover:text-white transition-colors">
+                  <Phone className="h-5 w-5 text-secondary shrink-0" />
+                  <span>{CONTACT_INFO.phone}</span>
+                </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-secondary shrink-0" />
-                <span>hr@visluck.com</span>
+              <li>
+                <a href={CONTACT_INFO.emailHref} className="flex items-center gap-3 hover:text-white transition-colors">
+                  <Mail className="h-5 w-5 text-secondary shrink-0" />
+                  <span>{CONTACT_INFO.email}</span>
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="container mx-auto max-w-7xl px-4 mt-16 pt-8 border-t border-primary-foreground/10 text-center text-xs text-primary-foreground/60">
-          <p>© {new Date().getFullYear()} VisLuck HR Consultancy. All rights reserved.</p>
+        <div className="container mx-auto max-w-7xl px-4 mt-16 pt-8 border-t border-primary-foreground/10 text-xs text-primary-foreground/60 space-y-6">
+          <OperationalPartnerDisclosure compact />
+          <p className="text-center">© {new Date().getFullYear()} VisLuck. All rights reserved. VisLuck is a trading name.</p>
         </div>
       </footer>
     </div>
