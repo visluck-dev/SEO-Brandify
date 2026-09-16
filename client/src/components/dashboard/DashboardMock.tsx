@@ -53,31 +53,31 @@ export function DashboardMock({ compact = false, withToast = false, className }:
 
           <div className={cn("grid gap-4", compact ? "xl:grid-cols-[1fr_11.5rem]" : "lg:grid-cols-[1fr_13rem]")}>
             {/* Applications table */}
-            <div className="overflow-hidden rounded-xl border border-hairline">
+            <div className="overflow-x-auto overflow-y-hidden rounded-xl border border-hairline">
               <table className="w-full text-left text-xs">
                 <caption className="sr-only">Recent applications with status, recruiter, interview date and next action</caption>
                 <thead className="bg-fog font-display text-[0.6875rem] font-semibold text-muted-foreground">
                   <tr>
-                    <th scope="col" className="px-3 py-2">Company / Role</th>
-                    <th scope="col" className="hidden px-3 py-2 md:table-cell">Applied</th>
-                    <th scope="col" className="px-3 py-2">Status</th>
-                    <th scope="col" className={cn("px-3 py-2", compact ? "hidden" : "hidden md:table-cell")}>Recruiter</th>
-                    <th scope="col" className={cn("px-3 py-2", compact ? "hidden 2xl:table-cell" : "hidden sm:table-cell")}>Interview</th>
-                    <th scope="col" className={cn("px-3 py-2", compact ? "hidden" : "hidden lg:table-cell")}>Next action</th>
+                    <th scope="col" className="px-2.5 py-2">Company / Role</th>
+                    <th scope="col" className="hidden px-2.5 py-2 md:table-cell">Applied</th>
+                    <th scope="col" className="px-2.5 py-2">Status</th>
+                    <th scope="col" className={cn("px-2.5 py-2", compact ? "hidden" : "hidden md:table-cell")}>Recruiter</th>
+                    <th scope="col" className={cn("px-2.5 py-2", compact ? "hidden 2xl:table-cell" : "hidden sm:table-cell")}>Interview</th>
+                    <th scope="col" className={cn("px-2.5 py-2", compact ? "hidden" : "hidden lg:table-cell")}>Next action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-hairline">
                   {rows.map((r, i) => (
                     <tr key={r.company} className={cn(compact && i > 1 && "hidden sm:table-row")}>
-                      <td className="px-3 py-2.5">
+                      <td className="px-2.5 py-2.5">
                         <span className="block truncate font-semibold text-ink">{r.company}</span>
                         <span className="block truncate text-muted-foreground">{r.role}</span>
                       </td>
-                      <td className="tabular hidden px-3 py-2.5 text-body md:table-cell">{r.applied}</td>
-                      <td className="px-3 py-2.5"><StatusPill status={r.status} label={r.statusLabel} /></td>
-                      <td className={cn("px-3 py-2.5 text-body", compact ? "hidden" : "hidden md:table-cell")}>{r.recruiter}</td>
-                      <td className={cn("tabular px-3 py-2.5 text-body", compact ? "hidden 2xl:table-cell" : "hidden sm:table-cell")}>{r.interview}</td>
-                      <td className={cn("px-3 py-2.5 text-body", compact ? "hidden" : "hidden lg:table-cell")}>{r.next}</td>
+                      <td className="tabular hidden px-2.5 py-2.5 text-body md:table-cell">{r.applied}</td>
+                      <td className="px-2.5 py-2.5"><StatusPill status={r.status} label={r.statusLabel} /></td>
+                      <td className={cn("px-2.5 py-2.5 text-body", compact ? "hidden" : "hidden md:table-cell")}>{r.recruiter}</td>
+                      <td className={cn("tabular px-2.5 py-2.5 text-body", compact ? "hidden 2xl:table-cell" : "hidden sm:table-cell")}>{r.interview}</td>
+                      <td className={cn("px-2.5 py-2.5 text-body", compact ? "hidden" : "hidden lg:table-cell")}>{r.next}</td>
                     </tr>
                   ))}
                 </tbody>

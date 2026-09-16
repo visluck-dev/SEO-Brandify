@@ -25,7 +25,7 @@ export function KpiTile({ label, value, delta, compact }: { label: string; value
 
 export function StatusPill({ status, label }: { status: ApplicationStatus; label: string }) {
   return (
-    <Badge variant={status} className="px-2 py-0 text-[0.6875rem]">
+    <Badge variant={status} className="gap-1 px-2 py-0 text-[0.6875rem]">
       <span className="size-1.5 rounded-full bg-current" aria-hidden="true" />
       {label}
     </Badge>

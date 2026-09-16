@@ -32,13 +32,14 @@ interface SectionHeaderProps {
   onNavy?: boolean;
   className?: string;
   titleAs?: "h1" | "h2";
+  titleId?: string;
 }
 
-export function SectionHeader({ eyebrow, title, lead, align = "left", onNavy = false, className, titleAs: Title = "h2" }: SectionHeaderProps) {
+export function SectionHeader({ eyebrow, title, lead, align = "left", onNavy = false, className, titleAs: Title = "h2", titleId }: SectionHeaderProps) {
   return (
     <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && <p className={cn("mb-4", onNavy ? "eyebrow-on-navy" : "eyebrow")}>{eyebrow}</p>}
-      <Title className={cn("h-section", onNavy && "text-white")}>{title}</Title>
+      <Title id={titleId} className={cn("h-section", onNavy && "text-white")}>{title}</Title>
       {lead && <p className={cn("lead mt-5", onNavy && "text-white/75")}>{lead}</p>}
     </div>
   );
