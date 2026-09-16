@@ -38,7 +38,7 @@ export function SiteHeader() {
           scrolled ? "border-hairline shadow-[0_1px_0_0_rgb(11_31_58_/_0.04),0_8px_24px_-16px_rgb(11_31_58_/_0.18)]" : "border-transparent",
         )}
       >
-        <Container className="flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
+        <Container className="flex h-16 items-center justify-between gap-4 md:h-[4.5rem] xl:gap-6">
           <Link href="/" aria-label="VisLuck home" className="rounded-lg">
             <Logo />
           </Link>
@@ -53,7 +53,7 @@ export function SiteHeader() {
                       href={link.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "relative inline-flex h-11 items-center rounded-lg px-3 font-display text-sm font-semibold transition-colors duration-200 hover:bg-mist hover:text-ink",
+                        "relative inline-flex h-11 items-center whitespace-nowrap rounded-lg px-2.5 font-display text-[0.8125rem] font-semibold transition-colors duration-200 hover:bg-mist hover:text-ink xl:px-3 xl:text-sm",
                         active ? "text-teal-700" : "text-body",
                       )}
                     >
