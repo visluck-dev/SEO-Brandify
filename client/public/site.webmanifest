@@ -1,0 +1,13 @@
+{
+  "name": "VisLuck",
+  "short_name": "VisLuck",
+  "description": "Your UK Job Search, Managed.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0B1F3A",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
