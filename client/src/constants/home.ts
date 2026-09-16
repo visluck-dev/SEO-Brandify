@@ -18,7 +18,7 @@ export const TRUST_BAR = {
 } as const;
 
 export const PROBLEM = {
-  title: "Applying to Jobs Shouldn't Feel Like a Full-Time Job",
+  title: "Applying to Jobs Shouldn’t Feel Like a Full-Time Job",
   sequence: ["You find a vacancy.", "You update your CV.", "You apply.", "Then… silence."],
   body: "You lose track of where you applied, which CV you used, when you should follow up and what you should do next.",
   resolution: "VisLuck brings structure to the entire process.",
@@ -37,7 +37,7 @@ export const ABOUT = {
   paragraphs: [
     "VisLuck was created to make the UK job-search process more organised, transparent and candidate-focused.",
     "Our approach combines recruitment experience, career support and technology to help candidates navigate the UK employment market with greater clarity.",
-    "We don't believe in sending candidates endless job links and leaving them to figure out the rest.",
+    "We don’t believe in sending candidates endless job links and leaving them to figure out the rest.",
     "We believe in understanding the candidate, identifying relevant opportunities, supporting the application process and keeping the entire journey organised.",
   ],
   philosophyIntro: "Our philosophy is simple:",
@@ -61,7 +61,7 @@ export const EXPERIENCE = {
 } as const;
 
 export const DIFFERENTIATOR = {
-  title: "We Don't Just Tell You Where to Look.",
+  title: "We Don’t Just Tell You Where to Look.",
   subtitle: "We help you manage the journey.",
   traditional: {
     label: "Traditional Approach",

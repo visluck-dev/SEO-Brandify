@@ -20,7 +20,7 @@ export function Logo({ className, tone = "navy", withTagline = false }: LogoProp
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <LogoMark className="h-8 w-8 shrink-0" />
       <span className="flex flex-col leading-none">
-        <span className={cn("font-display text-[1.15rem] font-extrabold uppercase tracking-[0.16em]", wordmark)}>
+        <span translate="no" className={cn("font-display text-[1.15rem] font-extrabold uppercase tracking-[0.16em]", wordmark)}>
           VisLuck
         </span>
         {withTagline && (

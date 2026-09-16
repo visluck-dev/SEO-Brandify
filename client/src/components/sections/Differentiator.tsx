@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 
 import { Section } from "@/components/layout/Section";
-import { Reveal } from "@/components/motion/Reveal";
 import { DIFFERENTIATOR } from "@/constants/home";
 import { cn } from "@/lib/utils";
 
@@ -9,21 +8,19 @@ export function Differentiator({ tone = "mist" }: { tone?: "paper" | "mist" }) {
   const d = DIFFERENTIATOR;
   return (
     <Section tone={tone} id="approach" aria-labelledby="diff-title">
-      <Reveal className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto max-w-3xl text-center">
         <h2 id="diff-title" className="h-section">
           {d.title}
         </h2>
         <p className="mt-3 font-display text-xl font-bold text-teal-700 md:text-2xl">{d.subtitle}</p>
-      </Reveal>
+      </div>
 
-      <Reveal className="mt-12 space-y-5">
+      <div className="mt-12 space-y-5">
         <FlowRow label={d.traditional.label} steps={d.traditional.steps} muted />
         <FlowRow label={d.visluck.label} steps={d.visluck.steps} />
-      </Reveal>
+      </div>
 
-      <Reveal>
-        <p className="mt-10 text-center font-display text-lg font-bold text-ink">{d.closing}</p>
-      </Reveal>
+      <p className="mt-10 text-center font-display text-lg font-bold text-ink">{d.closing}</p>
     </Section>
   );
 }

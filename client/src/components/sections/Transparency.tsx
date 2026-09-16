@@ -1,7 +1,6 @@
 import { Check, ShieldCheck } from "lucide-react";
 
 import { Section, SectionHeader } from "@/components/layout/Section";
-import { Reveal } from "@/components/motion/Reveal";
 import { TRANSPARENCY } from "@/constants/home-sections";
 
 export function Transparency({ tone = "mist" }: { tone?: "paper" | "mist" }) {
@@ -9,7 +8,7 @@ export function Transparency({ tone = "mist" }: { tone?: "paper" | "mist" }) {
   return (
     <Section tone={tone} id="transparency" aria-labelledby="transparency-title">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] lg:gap-16">
-        <Reveal>
+        <div>
           <SectionHeader eyebrow={t.eyebrow} title={t.title} lead={t.lead} titleId="transparency-title" />
           <div className="mt-8 rounded-2xl border border-navy-100 bg-navy-50 p-6">
             <ShieldCheck className="size-6 text-ink" aria-hidden="true" />
@@ -19,9 +18,9 @@ export function Transparency({ tone = "mist" }: { tone?: "paper" | "mist" }) {
               ))}
             </ul>
           </div>
-        </Reveal>
+        </div>
 
-        <Reveal className="lg:pt-2">
+        <div className="lg:pt-2">
           <p className="eyebrow mb-5">{t.provideIntro}</p>
           <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
             {t.provide.map((p) => (
@@ -38,7 +37,7 @@ export function Transparency({ tone = "mist" }: { tone?: "paper" | "mist" }) {
               <p key={line}>{line}</p>
             ))}
           </div>
-        </Reveal>
+        </div>
       </div>
     </Section>
   );

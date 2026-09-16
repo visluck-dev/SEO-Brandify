@@ -1,4 +1,3 @@
-import { motion, useReducedMotion } from "framer-motion";
 import { BellRing } from "lucide-react";
 
 import { LogoMark } from "@/components/Logo";
@@ -100,30 +99,20 @@ export function DashboardMock({ compact = false, withToast = false, className }:
   );
 }
 
+/** Static notification card hanging off the panel (no mount animation, per ui-animation review). */
 function ScheduledToast() {
-  const reduce = useReducedMotion();
   const t = DASHBOARD_SAMPLE.toast;
-  const content = (
-    <div className="flex items-center gap-3 rounded-xl border border-hairline bg-white px-3.5 py-2.5 shadow-toast">
-      <span className="flex size-8 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
-        <BellRing className="size-4" aria-hidden="true" />
-      </span>
-      <span className="text-xs">
-        <span className="block font-display font-bold text-ink">{t.title}</span>
-        <span className="text-muted-foreground">{t.detail}</span>
-      </span>
-    </div>
-  );
-  const pos = "absolute -bottom-3 left-3 hidden sm:block lg:-left-8 lg:bottom-4";
-  if (reduce) return <div className={pos}>{content}</div>;
   return (
-    <motion.div
-      className={pos}
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {content}
-    </motion.div>
+    <div className="absolute -bottom-3 left-3 hidden sm:block lg:-left-8 lg:bottom-4">
+      <div className="flex items-center gap-3 rounded-xl border border-hairline bg-white px-3.5 py-2.5 shadow-toast">
+        <span className="flex size-8 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
+          <BellRing className="size-4" aria-hidden="true" />
+        </span>
+        <span className="text-xs">
+          <span className="block font-display font-bold text-ink">{t.title}</span>
+          <span className="text-muted-foreground">{t.detail}</span>
+        </span>
+      </div>
+    </div>
   );
 }

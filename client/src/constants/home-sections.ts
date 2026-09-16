@@ -14,7 +14,7 @@ export const DASHBOARD_SECTION = {
   ],
   visibilityIntro: "Application-level visibility:",
   columns: ["Company", "Role", "Application Date", "Status", "Recruiter", "Interview Date", "Next Action"],
-  closing: "Know where you are. Know what's next.",
+  closing: "Know where you are. Know what’s next.",
 } as const;
 
 export const TRANSPARENCY = {
@@ -44,8 +44,8 @@ export const TRANSPARENCY = {
 export const FINAL_CTA = {
   title: "Your Next Opportunity Starts With a Better Strategy.",
   lines: [
-    "Don't leave your UK job search to guesswork.",
+    "Don’t leave your UK job search to guesswork.",
     "Get professional support, structured applications and visibility throughout your journey.",
   ],
-  footnote: "Let's talk about your career goals.",
+  footnote: "Let’s talk about your career goals.",
 } as const;

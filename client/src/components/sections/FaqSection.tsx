@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Section, SectionHeader } from "@/components/layout/Section";
-import { Reveal } from "@/components/motion/Reveal";
 import { FAQS, FAQ_SECTION } from "@/constants/faqs";
 import { ROUTES } from "@/constants/site";
 
@@ -31,7 +30,7 @@ export function FaqSection({ limit, tone = "paper", lead, titleAs = "h2" }: FaqS
             </Button>
           )}
         </div>
-        <Reveal>
+        <div>
           <Accordion type="single" collapsible className="divide-y divide-hairline rounded-2xl border border-hairline bg-white px-5 shadow-card sm:px-7">
             {items.map((f, i) => (
               <AccordionItem key={f.question} value={`faq-${i}`} className="border-b-0">
@@ -42,7 +41,7 @@ export function FaqSection({ limit, tone = "paper", lead, titleAs = "h2" }: FaqS
               </AccordionItem>
             ))}
           </Accordion>
-        </Reveal>
+        </div>
       </div>
     </Section>
   );

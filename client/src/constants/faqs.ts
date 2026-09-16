@@ -11,7 +11,7 @@ export const FAQS = [
   {
     question: "Do you apply for jobs on behalf of candidates?",
     answer:
-      "Where included within the agreed service, VisLuck can provide application-management support for relevant opportunities, subject to the candidate's profile, eligibility and the service terms.",
+      "Where included within the agreed service, VisLuck can provide application-management support for relevant opportunities, subject to the candidate’s profile, eligibility and the service terms.",
   },
   {
     question: "Do you only support UK jobs?",

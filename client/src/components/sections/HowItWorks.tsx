@@ -60,9 +60,9 @@ function Timeline({ tone, titleAs }: { tone: "paper" | "mist"; titleAs: "h1" | "
           </Button>
         </div>
 
-        <ol className="relative border-l-2 border-hairline pl-8 sm:pl-10">
+        <Reveal as="ol" stagger className="relative border-l-2 border-hairline pl-8 sm:pl-10">
           {STEPS.map((step, i) => (
-            <Reveal as="li" key={step.number} className="relative pb-10 last:pb-0">
+            <RevealItem as="li" key={step.number} className="relative pb-10 last:pb-0">
               <span
                 aria-hidden="true"
                 className="absolute -left-[calc(2rem+0.0625rem+1.25rem)] top-0.5 flex size-10 items-center justify-center rounded-full border-2 border-white bg-teal-700 font-display text-xs font-bold text-white shadow-card sm:-left-[calc(2.5rem+0.0625rem+1.25rem)]"
@@ -76,9 +76,9 @@ function Timeline({ tone, titleAs }: { tone: "paper" | "mist"; titleAs: "h1" | "
                   Support continues after this step
                 </p>
               )}
-            </Reveal>
+            </RevealItem>
           ))}
-        </ol>
+        </Reveal>
       </div>
     </Section>
   );

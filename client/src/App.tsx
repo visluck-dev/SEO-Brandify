@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect } from "react";
 import { Redirect, Route, Switch, useLocation } from "wouter";
 import { HelmetProvider } from "react-helmet-async";
 
-import { Toaster } from "@/components/ui/toaster";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants/site";
@@ -85,7 +84,6 @@ export default function App() {
         </main>
         <SiteFooter />
       </div>
-      <Toaster />
     </HelmetProvider>
   );
 }

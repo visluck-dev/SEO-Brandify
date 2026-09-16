@@ -24,7 +24,7 @@ export default function BookConsultation() {
         <Container className="relative py-14 md:py-20">
           <div className="max-w-3xl">
             <p className="eyebrow mb-4">Book a free consultation</p>
-            <h1 className="h-display">Let's Talk About Your UK Career Goals</h1>
+            <h1 className="h-display">Let’s Talk About Your UK Career Goals</h1>
             <p className="lead mt-6 max-w-2xl">
               Complete the form and our team will get in touch to understand your profile and discuss how VisLuck can support your job search.
             </p>

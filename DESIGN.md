@@ -44,7 +44,7 @@ Predominantly white and light. Deep navy carries authority (headings, primary bu
 Purple/neon gradients · pure black · glows · saturated reds outside error text · dark full-page sections beyond the one CTA band and the footer.
 
 ## 3. Typography Rules
-- **Family:** `Manrope Variable` (self-hosted, `@fontsource-variable/manrope`) for everything. Body is exposed as `--font-body` so it can be swapped independently later. No serif anywhere. Numerals in the dashboard use `font-variant-numeric: tabular-nums`.
+- **Family:** `Manrope Variable` (self-hosted latin + latin-ext subsets in `client/public/fonts`, preloaded) for everything. Body is exposed as `--font-body` so it can be swapped independently later. No serif anywhere. Numerals in the dashboard use `font-variant-numeric: tabular-nums`.
 - **Display (h1):** `clamp(2.5rem, 2rem + 2.6vw, 4.25rem)`, weight 800, tracking −0.03em, leading 1.05. Hierarchy comes from weight and colour (Ink vs Body), never from screaming size.
 - **h2:** `clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem)`, weight 800, tracking −0.025em, leading 1.1
 - **h3:** 1.375rem / 1.3, weight 700, tracking −0.01em
@@ -59,7 +59,7 @@ Purple/neon gradients · pure black · glows · saturated reds outside error tex
 * **Icon tiles:** 2.75rem square, radius 0.75rem, Teal 50 fill, Teal 700 icon (lucide, 1.5px stroke, 20px).
 * **Pills / badges:** radius full, 0.75rem text, weight 600, tint background + 700 text (see status).
 * **Inputs:** label above (0.875rem, weight 600, Ink), input 2.75rem high, Mist fill, 1px Hairline, radius 0.75rem, focus Paper fill + Teal ring; helper text Muted; error text `#B91C1C` below with the field outlined red. No floating labels.
-* **Dashboard (product artefact):** Paper panel, radius 1.5rem, 1px Hairline, shadow `dashboard` (`0 30px 80px -30px rgb(11 31 58 / .35)`); window chrome bar on Mist; KPI tiles with tabular numerals and a small delta; a table with Fog header and hairline rows; status pills; a pulsing Teal 500 "live" dot is the one perpetual micro-interaction.
+* **Dashboard (product artefact):** Paper panel, radius 1.5rem, 1px Hairline, shadow `dashboard` (`0 30px 80px -30px rgb(11 31 58 / .35)`); window chrome bar on Mist; KPI tiles with tabular numerals and a small delta; a table with Fog header and hairline rows; status pills; a pulsing Teal 500 "live" dot is the one perpetual micro-interaction; the "Interview scheduled" card is static.
 * **Loading / empty:** skeleton blocks matching layout; never spinners (the site is static, so these rarely appear).
 
 ## 5. Layout Principles
@@ -73,9 +73,9 @@ Purple/neon gradients · pure black · glows · saturated reds outside error tex
 ## 6. Motion & Interaction
 - Only `transform` and `opacity` (+ colour for state). Never layout properties. Never `transition: all`.
 - Hover: 150ms; colour changes 200ms; reveals 250–300ms; easing `cubic-bezier(0.22, 1, 0.36, 1)`.
-- **No animation on first paint above the fold** (LCP + the ui-animation rule). Below the fold, sections use a single fade + 8px rise, once, staggered 40ms, total ≤ 300ms.
-- The dashboard's "Interview scheduled" toast is the one delayed entrance (600ms after mount, once); the live dot pulses perpetually (2s, opacity/scale only).
-- Accordion uses Radix height variables at 200ms; sheet (mobile nav) slides 250ms with the drawer curve `cubic-bezier(0.32, 0.72, 0, 1)`.
+- **No animation on first paint above the fold** (LCP + the ui-animation rule). Below the fold, only staggered lists and grids (services, steps, why, audiences, metrics) use a single fade + 8px rise, once, 40ms stagger, ≤ 300ms total; text blocks and the product dashboard never scroll-reveal.
+- Nothing animates on mount. The dashboard's live dot pulses perpetually (2s, opacity/scale only) and is the one looping micro-interaction.
+- Accordion uses Radix height variables at 200ms; sheet (mobile nav) slides 300ms open / 200ms close with the drawer curve `cubic-bezier(0.32, 0.72, 0, 1)`.
 - `prefers-reduced-motion: reduce` → all of the above become instant; the pulse stops.
 
 ## 7. Anti-Patterns (Banned)

@@ -6,7 +6,6 @@ import { Audiences } from "@/components/sections/Audiences";
 import { Transparency } from "@/components/sections/Transparency";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { OperationalPartnerDisclosure } from "@/components/OperationalPartnerDisclosure";
-import { Reveal } from "@/components/motion/Reveal";
 import { EXPERIENCE } from "@/constants/home";
 import { SEO_PAGES } from "@/constants/seo";
 import { ROUTES } from "@/constants/site";
@@ -25,14 +24,14 @@ export default function About() {
 
       <Section tone="paper" id="experience" aria-labelledby="experience-title">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-          <Reveal>
+          <div>
             <p className="eyebrow mb-4">{EXPERIENCE.eyebrow}</p>
             <h2 id="experience-title" className="h-section">
               {EXPERIENCE.title}
             </h2>
             <p className="lead mt-6">{EXPERIENCE.body}</p>
-          </Reveal>
-          <Reveal className="rounded-3xl border border-hairline bg-mist p-7 md:p-10">
+          </div>
+          <div className="rounded-3xl border border-hairline bg-mist p-7 md:p-10">
             <p className="font-display text-4xl font-extrabold tracking-tight text-ink md:text-5xl">{EXPERIENCE.stat}</p>
             <p className="mt-6 font-display text-sm font-semibold uppercase tracking-[0.12em] text-muted-foreground">{EXPERIENCE.intro}</p>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -42,7 +41,7 @@ export default function About() {
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </div>
         </div>
       </Section>
 

@@ -54,7 +54,7 @@ export const PRIVACY_POLICY: LegalDoc = {
     {
       heading: "Your rights",
       paragraphs: [
-        `Under UK data protection law you can ask to access, correct, delete or restrict the personal data we hold about you, object to our processing, or ask for a copy in a portable format. To exercise any of these rights, email ${CONTACT_INFO.email}. You can also complain to the Information Commissioner's Office (ico.org.uk).`,
+        `Under UK data protection law you can ask to access, correct, delete or restrict the personal data we hold about you, object to our processing, or ask for a copy in a portable format. To exercise any of these rights, email ${CONTACT_INFO.email}. You can also complain to the Information Commissioner’s Office (ico.org.uk).`,
       ],
     },
     {

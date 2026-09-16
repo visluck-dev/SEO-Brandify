@@ -9,7 +9,7 @@ export function Problem() {
   return (
     <Section tone="paper" aria-labelledby="problem-title">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
-        <Reveal>
+        <div>
           <SectionHeader eyebrow="The problem" title={PROBLEM.title} titleId="problem-title" />
           <ol className="mt-8 space-y-1 border-l-2 border-hairline pl-6" aria-label="A typical job search">
             {PROBLEM.sequence.map((line, i) => {
@@ -24,7 +24,7 @@ export function Problem() {
           </ol>
           <p className="mt-8 max-w-lg leading-relaxed text-body">{PROBLEM.body}</p>
           <p className="mt-4 font-display text-lg font-bold text-ink">{PROBLEM.resolution}</p>
-        </Reveal>
+        </div>
 
         <div className="lg:pt-14">
           <p className="eyebrow mb-4">{PROBLEM.intro}</p>

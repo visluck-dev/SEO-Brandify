@@ -63,7 +63,7 @@ export const SERVICES: readonly Service[] = [
     id: "ongoing-career-support",
     number: "06",
     title: "Ongoing Career Support",
-    description: "Your job search doesn't end after clicking Apply. Receive structured support throughout your journey.",
+    description: "Your job search doesn’t end after clicking Apply. Receive structured support throughout your journey.",
     points: ["Progress reviews", "Application updates", "Follow-up tracking", "Career guidance", "Dedicated support"],
     icon: "LifeBuoy",
   },

@@ -3,7 +3,6 @@ import { ArrowRight, Quote } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Section, SectionHeader } from "@/components/layout/Section";
-import { Reveal } from "@/components/motion/Reveal";
 import { ABOUT, EXPERIENCE } from "@/constants/home";
 import { ROUTES } from "@/constants/site";
 import { cn } from "@/lib/utils";
@@ -21,7 +20,7 @@ export function AboutTeaser({ variant = "compact", showHeader = true }: AboutTea
   return (
     <Section tone="mist" aria-labelledby={showHeader ? "about-title" : undefined} aria-label={showHeader ? undefined : "About VisLuck"}>
       <div className="grid gap-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
-        <Reveal>
+        <div>
           {showHeader && <SectionHeader eyebrow={ABOUT.eyebrow} title={ABOUT.title} titleId="about-title" />}
           <div className={cn("prose-measure space-y-4 leading-relaxed text-body", showHeader ? "mt-8" : "text-lg")}>
             {paragraphs.map((p) => (
@@ -35,9 +34,9 @@ export function AboutTeaser({ variant = "compact", showHeader = true }: AboutTea
               </Link>
             </Button>
           )}
-        </Reveal>
+        </div>
 
-        <Reveal className="space-y-6">
+        <div className="space-y-6">
           <figure className="rounded-3xl border border-hairline bg-white p-7 shadow-card md:p-8">
             <Quote className="size-6 text-teal-600" aria-hidden="true" />
             <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-muted-foreground">{ABOUT.philosophyIntro}</p>
@@ -55,7 +54,7 @@ export function AboutTeaser({ variant = "compact", showHeader = true }: AboutTea
               ))}
             </ul>
           </div>
-        </Reveal>
+        </div>
       </div>
     </Section>
   );

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "wouter";
@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import { CONTACT_INFO, ROUTES } from "@/constants/site";
 import { formatConsultationMessage, sendConsultationRequest } from "@/lib/emailjs";
 import { SelectField, TextField } from "./ConsultationFields";
@@ -26,7 +25,6 @@ import {
 const MIN_FILL_MS = 3000;
 
 export function ConsultationForm() {
-  const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
   const openedAt = useRef(Date.now());
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -38,6 +36,16 @@ export function ConsultationForm() {
   });
 
   const values = form.watch();
+
+  // Warn before leaving the page with unsent, edited fields.
+  useEffect(() => {
+    if (!form.formState.isDirty || status === "success") return;
+    const warn = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [form.formState.isDirty, status]);
 
   async function onSubmit(v: ConsultationValues) {
     // Honeypot filled or submitted implausibly fast: pretend success, send nothing.
@@ -53,11 +61,6 @@ export function ConsultationForm() {
     } catch (error) {
       console.error("Consultation request failed:", error);
       setStatus("error");
-      toast({
-        title: "We couldn't send your request",
-        description: `Please try again, or email us directly at ${CONTACT_INFO.email}.`,
-        variant: "destructive",
-      });
     }
   }
 
@@ -84,7 +87,7 @@ export function ConsultationForm() {
           <TextField control={form.control} name="location" label="Current location" placeholder="City, country" autoComplete="address-level2" />
           <TextField control={form.control} name="jobTitle" label="Current job title" placeholder="e.g. Business Analyst" autoComplete="organization-title" />
           <SelectField control={form.control} name="experience" label="Years of experience" placeholder="Select a range" options={EXPERIENCE_OPTIONS} />
-          <TextField control={form.control} name="targetRole" label="Target UK role" placeholder="e.g. Senior Product Manager" />
+          <TextField control={form.control} name="targetRole" label="Target UK role" placeholder="e.g. Senior Product Manager" autoComplete="off" />
           <SelectField control={form.control} name="industry" label="Preferred industry" placeholder="Select an industry" options={INDUSTRY_OPTIONS} />
           <TextField control={form.control} name="linkedin" label="LinkedIn profile" type="url" placeholder="https://linkedin.com/in/your-name" optional className="sm:col-span-2" />
 
@@ -109,7 +112,7 @@ export function ConsultationForm() {
               )}
             />
           ) : (
-            <TextField control={form.control} name="cvLink" label="Link to your CV" type="url" placeholder="Google Drive, Dropbox or OneDrive link" optional className="sm:col-span-2" />
+            <TextField control={form.control} name="cvLink" label="Link to your CV" type="url" placeholder="Google Drive, Dropbox or OneDrive link" autoComplete="off" optional className="sm:col-span-2" />
           )}
 
           <SelectField control={form.control} name="preferredTime" label="Preferred consultation time" placeholder="Choose a time window" options={TIME_OPTIONS} className="sm:col-span-2" />

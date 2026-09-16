@@ -31,7 +31,7 @@ export function TextField({ control, name, label, placeholder, type = "text", au
             {optional && <span className="ml-1.5 font-normal text-muted-foreground">(optional)</span>}
           </FormLabel>
           <FormControl>
-            <Input type={type} placeholder={placeholder} autoComplete={autoComplete} {...field} value={field.value ?? ""} />
+            <Input type={type} placeholder={placeholder} autoComplete={autoComplete} spellCheck={type === "email" || type === "url" || type === "tel" ? false : undefined} {...field} value={field.value ?? ""} />
           </FormControl>
           {hint && <FormDescription className="text-xs">{hint}</FormDescription>}
           <FormMessage />
