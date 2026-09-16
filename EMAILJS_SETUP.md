@@ -1,118 +1,50 @@
-# EmailJS Integration Setup Guide
+# EmailJS setup (consultation form)
 
-This project uses **EmailJS** to send email notifications when someone submits the contact form. EmailJS allows you to send emails directly from the frontend without needing a backend server.
+The **Book a Free Consultation** form (`/book-a-consultation`) sends an email through [EmailJS](https://www.emailjs.com) — no backend is needed, which suits GitHub Pages hosting.
 
-## Quick Setup Steps
+## 1. Keys
 
-### 1. Create an EmailJS Account
-1. Go to [https://www.emailjs.com/](https://www.emailjs.com/)
-2. Sign up for a free account (200 emails/month free)
-
-### 2. Add an Email Service
-1. In your EmailJS dashboard, go to **Email Services**
-2. Click **Add New Service**
-3. Choose your email provider (Gmail, Outlook, etc.)
-4. Follow the setup instructions to connect your email
-5. **Copy your Service ID** (you'll need this later)
-
-### 3. Create an Email Template
-1. Go to **Email Templates** in your dashboard
-2. Click **Create New Template** (or use your existing template)
-3. Use this template structure:
-
-**Subject:** `New message from {{name}}`
-
-**Content:**
-```
-Hello ,
-You got a new message from {{name}}
-{{ message }}
-contact : {{ phone}}
-email : ({{ email}})
-
-Best wishes,
-EmailJS team
-```
-
-**Note:** Make sure your template uses these exact variable names:
-- `{{name}}` - The sender's name
-- `{{email}}` - The sender's email
-- `{{phone}}` - The sender's phone number
-- `{{message}}` - The message content
-
-4. **Copy your Template ID** (you'll need this later)
-
-### 4. Get Your Public Key
-1. Go to **Account** → **General** → **API Keys**
-2. **Copy your Public Key**
-
-### 5. Configure Environment Variables
-1. Create a `.env` file in the root of your project (same level as `package.json`)
-2. Add the following variables:
+Set these in a `.env` file (see `.env.example`). They are public identifiers, so shipping them in the client bundle is expected. If unset, the values in `client/src/lib/emailjs.ts` are used.
 
 ```env
-VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
-VITE_EMAILJS_SERVICE_ID=your_service_id_here
-VITE_EMAILJS_TEMPLATE_ID=your_template_id_here
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
 ```
 
-3. Replace the placeholder values with your actual EmailJS credentials
+## 2. Template variables
 
-### 6. Restart Your Development Server
-After adding the environment variables, restart your dev server:
-```bash
-npm run dev
+The form posts these parameters (input `name`s):
+
+| Parameter | Content |
+|---|---|
+| `name`, `email`, `phone`, `message`, `reply_to` | Kept for **backwards compatibility** — the existing template keeps working unchanged. `message` is a formatted summary of every field. |
+| `fullName`, `location`, `jobTitle`, `experience`, `targetRole`, `industry`, `linkedin`, `cvLink`, `preferredTime` | Individual fields if you want a richer template. |
+| `cv` | The uploaded CV file (see below). |
+
+A minimal template body that shows everything:
+
+```
+New consultation request
+
+{{message}}
+
+Reply to: {{reply_to}}
 ```
 
-## How It Works
+## 3. CV attachments
 
-When someone submits the contact form:
-1. The form data is sent to EmailJS
-2. EmailJS uses your email service to send an email
-3. You receive an email notification with all the form details
-4. The user sees a success message
+EmailJS attaches files only on **paid plans**. To enable:
 
-## Testing
+1. Open the template → **Attachments** → add **Form File Attachment** with parameter name `cv`.
+2. Keep `VITE_CV_UPLOAD_MODE=file` (the default).
 
-1. Fill out the contact form on your website
-2. Submit it
-3. Check your email inbox - you should receive the notification
-4. Check the browser console for any errors
+If you stay on the free plan, set `VITE_CV_UPLOAD_MODE=link` and the form shows a "Link to your CV" field instead of an upload.
 
-## Troubleshooting
+## 4. Spam protection
 
-### Email not sending?
-- Verify your environment variables are set correctly
-- Check that your EmailJS service is properly connected
-- Make sure your template variables match: `{{from_name}}`, `{{from_email}}`, `{{phone}}`, `{{subject}}`, `{{message}}`
-- Check the browser console for error messages
+The form has a hidden honeypot field and ignores submissions completed in under three seconds. No CAPTCHA is used. EmailJS also lets you enable domain allow-listing and rate limits in its dashboard — recommended for production.
 
-### Environment variables not working?
-- Make sure your `.env` file is in the root directory
-- Restart your dev server after adding environment variables
-- Variables must start with `VITE_` to be accessible in Vite
+## 5. Testing
 
-## Alternative: Direct Configuration
-
-If you prefer not to use environment variables, you can directly edit `client/src/lib/emailjs.ts` and replace the placeholder values:
-
-```typescript
-export const EMAILJS_CONFIG = {
-  PUBLIC_KEY: 'your_actual_public_key',
-  SERVICE_ID: 'your_actual_service_id',
-  TEMPLATE_ID: 'your_actual_template_id',
-};
-```
-
-**Note:** This is less secure for production. Use environment variables instead.
-
-## Free Tier Limits
-
-EmailJS free tier includes:
-- 200 emails per month
-- Basic email templates
-- Standard support
-
-For production use with higher volume, consider upgrading to a paid plan.
-
-
+Fill the form on `npm run dev` and submit. A success panel appears and the email arrives in the inbox connected to your EmailJS service. Errors are shown inline and in a toast, with a `mailto:` fallback.

@@ -13,15 +13,16 @@ interface FaqSectionProps {
   limit?: number;
   tone?: "paper" | "mist";
   lead?: string;
+  titleAs?: "h1" | "h2";
 }
 
-export function FaqSection({ limit, tone = "paper", lead }: FaqSectionProps) {
+export function FaqSection({ limit, tone = "paper", lead, titleAs = "h2" }: FaqSectionProps) {
   const items = limit ? FAQS.slice(0, limit) : FAQS;
   return (
     <Section tone={tone} id="faqs" aria-labelledby="faq-title">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <SectionHeader eyebrow={FAQ_SECTION.eyebrow} title={FAQ_SECTION.title} lead={lead} titleId="faq-title" />
+          <SectionHeader eyebrow={FAQ_SECTION.eyebrow} title={FAQ_SECTION.title} lead={lead} titleId="faq-title" titleAs={titleAs} />
           {limit && (
             <Button asChild variant="outline" size="lg" className="mt-8">
               <Link href={ROUTES.faqs}>

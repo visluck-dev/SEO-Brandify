@@ -10,10 +10,12 @@ import { CTA, ROUTES } from "@/constants/site";
 interface HowItWorksProps {
   variant?: "compact" | "full";
   tone?: "paper" | "mist";
+  /** Use "h1" when the full timeline opens its own page. */
+  titleAs?: "h1" | "h2";
 }
 
-export function HowItWorks({ variant = "compact", tone = "mist" }: HowItWorksProps) {
-  if (variant === "full") return <Timeline tone={tone} />;
+export function HowItWorks({ variant = "compact", tone = "mist", titleAs = "h2" }: HowItWorksProps) {
+  if (variant === "full") return <Timeline tone={tone} titleAs={titleAs} />;
 
   return (
     <Section tone={tone} id="how-it-works" aria-labelledby="how-title">
@@ -46,12 +48,12 @@ export function HowItWorks({ variant = "compact", tone = "mist" }: HowItWorksPro
 }
 
 /** Full-page variant: sticky heading column + vertical timeline. */
-function Timeline({ tone }: { tone: "paper" | "mist" }) {
+function Timeline({ tone, titleAs }: { tone: "paper" | "mist"; titleAs: "h1" | "h2" }) {
   return (
     <Section tone={tone} id="how-it-works" aria-labelledby="how-title">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <SectionHeader eyebrow={HOW_IT_WORKS.eyebrow} title={HOW_IT_WORKS.title} titleId="how-title" />
+          <SectionHeader eyebrow={HOW_IT_WORKS.eyebrow} title={HOW_IT_WORKS.title} titleId="how-title" titleAs={titleAs} />
           <p className="lead mt-6">Seven clear stages. Every stage has a defined next step, and you can see where you are at any time.</p>
           <Button asChild size="lg" className="mt-8">
             <Link href={CTA.href}>{CTA.label}</Link>

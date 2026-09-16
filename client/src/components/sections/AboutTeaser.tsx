@@ -6,21 +6,24 @@ import { Section, SectionHeader } from "@/components/layout/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { ABOUT, EXPERIENCE } from "@/constants/home";
 import { ROUTES } from "@/constants/site";
+import { cn } from "@/lib/utils";
 
 interface AboutTeaserProps {
   /** Full variant renders every paragraph; compact keeps the first two and links to /about. */
   variant?: "compact" | "full";
+  /** Hide the section header when a PageIntro already carries the title. */
+  showHeader?: boolean;
 }
 
-export function AboutTeaser({ variant = "compact" }: AboutTeaserProps) {
+export function AboutTeaser({ variant = "compact", showHeader = true }: AboutTeaserProps) {
   const paragraphs = variant === "full" ? ABOUT.paragraphs : ABOUT.paragraphs.slice(0, 2);
 
   return (
-    <Section tone="mist" aria-labelledby="about-title">
+    <Section tone="mist" aria-labelledby={showHeader ? "about-title" : undefined} aria-label={showHeader ? undefined : "About VisLuck"}>
       <div className="grid gap-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
         <Reveal>
-          <SectionHeader eyebrow={ABOUT.eyebrow} title={ABOUT.title} titleId="about-title" />
-          <div className="prose-measure mt-8 space-y-4 leading-relaxed text-body">
+          {showHeader && <SectionHeader eyebrow={ABOUT.eyebrow} title={ABOUT.title} titleId="about-title" />}
+          <div className={cn("prose-measure space-y-4 leading-relaxed text-body", showHeader ? "mt-8" : "text-lg")}>
             {paragraphs.map((p) => (
               <p key={p}>{p}</p>
             ))}

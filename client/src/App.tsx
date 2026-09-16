@@ -8,7 +8,13 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants/site";
 import Home from "@/pages/Home";
 
-const Placeholder = lazy(() => import("@/pages/Placeholder"));
+const About = lazy(() => import("@/pages/About"));
+const Services = lazy(() => import("@/pages/Services"));
+const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
+const WhyVisLuck = lazy(() => import("@/pages/WhyVisLuck"));
+const Faqs = lazy(() => import("@/pages/Faqs"));
+const BookConsultation = lazy(() => import("@/pages/BookConsultation"));
+const LegalPage = lazy(() => import("@/pages/legal/LegalPage"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 /** Old employer-consultancy URLs that are still indexed → nearest new page. */
@@ -47,16 +53,16 @@ function Router() {
     <Suspense fallback={<div className="min-h-[50vh]" aria-busy="true" />}>
       <Switch>
         <Route path={ROUTES.home} component={Home} />
-        <Route path={ROUTES.about}>{() => <Placeholder title="About Us" />}</Route>
-        <Route path={ROUTES.services}>{() => <Placeholder title="Services" />}</Route>
-        <Route path={ROUTES.howItWorks}>{() => <Placeholder title="How It Works" />}</Route>
-        <Route path={ROUTES.why}>{() => <Placeholder title="Why VisLuck" />}</Route>
-        <Route path={ROUTES.faqs}>{() => <Placeholder title="FAQs" />}</Route>
-        <Route path={ROUTES.book}>{() => <Placeholder title="Book a Free Consultation" />}</Route>
-        <Route path={ROUTES.privacy}>{() => <Placeholder title="Privacy Policy" />}</Route>
-        <Route path={ROUTES.terms}>{() => <Placeholder title="Terms & Conditions" />}</Route>
-        <Route path={ROUTES.cookies}>{() => <Placeholder title="Cookie Policy" />}</Route>
-        <Route path={ROUTES.disclaimer}>{() => <Placeholder title="Disclaimer" />}</Route>
+        <Route path={ROUTES.about} component={About} />
+        <Route path={ROUTES.services} component={Services} />
+        <Route path={ROUTES.howItWorks} component={HowItWorks} />
+        <Route path={ROUTES.why} component={WhyVisLuck} />
+        <Route path={ROUTES.faqs} component={Faqs} />
+        <Route path={ROUTES.book} component={BookConsultation} />
+        <Route path={ROUTES.privacy}>{() => <LegalPage doc="privacy" />}</Route>
+        <Route path={ROUTES.terms}>{() => <LegalPage doc="terms" />}</Route>
+        <Route path={ROUTES.cookies}>{() => <LegalPage doc="cookies" />}</Route>
+        <Route path={ROUTES.disclaimer}>{() => <LegalPage doc="disclaimer" />}</Route>
         {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
           <Route key={from} path={from}>
             <Redirect to={to} replace />

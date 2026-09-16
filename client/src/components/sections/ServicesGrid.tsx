@@ -13,24 +13,28 @@ const icons = { FileText, Linkedin, Compass, Send, MessagesSquare, LifeBuoy } as
 interface ServicesGridProps {
   variant?: "compact" | "full";
   tone?: "paper" | "mist";
+  /** Hide the section header when a PageIntro already carries the title. */
+  showHeader?: boolean;
 }
 
 /** 2 featured + 4 compact tiles: an asymmetric bento rather than equal cards. */
-export function ServicesGrid({ variant = "compact", tone = "paper" }: ServicesGridProps) {
+export function ServicesGrid({ variant = "compact", tone = "paper", showHeader = true }: ServicesGridProps) {
   return (
-    <Section tone={tone} id="services" aria-labelledby="services-title">
-      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <SectionHeader eyebrow={SERVICES_SECTION.eyebrow} title={SERVICES_SECTION.title} titleId="services-title" />
-        {variant === "compact" && (
-          <Button asChild variant="outline" size="lg" className="shrink-0">
-            <Link href={ROUTES.services}>
-              Explore all services <ArrowRight aria-hidden="true" />
-            </Link>
-          </Button>
-        )}
-      </div>
+    <Section tone={tone} id="services" aria-labelledby={showHeader ? "services-title" : undefined} aria-label={showHeader ? undefined : "Services"}>
+      {showHeader && (
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionHeader eyebrow={SERVICES_SECTION.eyebrow} title={SERVICES_SECTION.title} titleId="services-title" />
+          {variant === "compact" && (
+            <Button asChild variant="outline" size="lg" className="shrink-0">
+              <Link href={ROUTES.services}>
+                Explore all services <ArrowRight aria-hidden="true" />
+              </Link>
+            </Button>
+          )}
+        </div>
+      )}
 
-      <Reveal as="ul" stagger className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <Reveal as="ul" stagger className={cn("grid gap-5 md:grid-cols-2 xl:grid-cols-4", showHeader && "mt-12")}>
         {SERVICES.map((s) => (
           <ServiceTile key={s.id} service={s} full={variant === "full"} />
         ))}
