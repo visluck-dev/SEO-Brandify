@@ -25,7 +25,7 @@ npm run check     # TypeScript
 | `DESIGN.md` | Design system: colours, type, spacing, motion, banned patterns |
 | `client/src/constants/` | **All copy and data** (nav, hero, services, steps, FAQs, dashboard sample data, legal drafts, SEO titles) |
 | `client/src/components/sections/` | Page sections composed by `client/src/pages/*` |
-| `client/src/components/dashboard/` | The illustrative candidate dashboard (sample data only) |
+| `client/src/components/dashboard/` | The illustrative candidate dashboard: `LiveDashboard` (hero story, scenes in `constants/dashboard-story.ts`) and the static `DashboardMock` |
 | `client/src/components/forms/` | Consultation form (schema, fields, success state) |
 | `client/public/` | Favicons, `og-image.png`, `robots.txt`, `sitemap.xml`, `CNAME` |
 | `scripts/og/` | HTML templates used to render the PNG assets with headless Edge/Chrome |
