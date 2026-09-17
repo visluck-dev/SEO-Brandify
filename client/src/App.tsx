@@ -1,53 +1,108 @@
-import { Switch, Route } from "wouter";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { lazy, Suspense, useEffect } from "react";
+import { Redirect, Route, Switch, useLocation } from "wouter";
 import { HelmetProvider } from "react-helmet-async";
-import { Layout } from "@/components/Layout";
-import NotFound from "@/pages/not-found";
+import { motion, useReducedMotion } from "framer-motion";
 
-// Pages
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { ROUTES } from "@/constants/site";
 import Home from "@/pages/Home";
-import About from "@/pages/About";
-import Services from "@/pages/Services";
-import ManpowerRecruitment from "@/pages/ManpowerRecruitment";
-import HRTraining from "@/pages/HRTraining";
-import HRProcessSetup from "@/pages/HRProcessSetup";
-import HRAnalytics from "@/pages/HRAnalytics";
-import Testimonials from "@/pages/Testimonials";
-import Careers from "@/pages/Careers";
-import Contact from "@/pages/Contact";
-import Blog from "@/pages/Blog";
+
+const About = lazy(() => import("@/pages/About"));
+const Services = lazy(() => import("@/pages/Services"));
+const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
+const WhyVisLuck = lazy(() => import("@/pages/WhyVisLuck"));
+const Faqs = lazy(() => import("@/pages/Faqs"));
+const BookConsultation = lazy(() => import("@/pages/BookConsultation"));
+const LegalPage = lazy(() => import("@/pages/legal/LegalPage"));
+const NotFound = lazy(() => import("@/pages/NotFound"));
+
+/** Old employer-consultancy URLs that are still indexed → nearest new page. */
+const LEGACY_REDIRECTS: Record<string, string> = {
+  "/about-visluck-hr-consultancy": ROUTES.about,
+  "/hr-consultancy-services": ROUTES.services,
+  "/contact-visluck": ROUTES.book,
+  "/contact": ROUTES.book,
+  "/manpower-recruitment-consultancy": ROUTES.home,
+  "/hr-training-development": ROUTES.home,
+  "/hr-process-streamlining": ROUTES.home,
+  "/hr-analytics-solutions": ROUTES.home,
+  "/client-testimonials": ROUTES.home,
+  "/careers": ROUTES.home,
+  "/hr-insights": ROUTES.home,
+};
+
+function ScrollManager() {
+  const [location] = useLocation();
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) {
+        el.scrollIntoView({ block: "start" });
+        return;
+      }
+    }
+    window.scrollTo({ top: 0 });
+  }, [location]);
+  return null;
+}
+
+/** Each route enters with a short fade + 6px rise (instant under reduced motion). */
+function PageTransition({ children }: { children: React.ReactNode }) {
+  const [location] = useLocation();
+  const reduce = useReducedMotion();
+  return (
+    <motion.div
+      key={location}
+      initial={reduce ? false : { opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 function Router() {
   return (
-    <Layout>
+    <Suspense fallback={<div className="min-h-[50vh]" aria-busy="true" />}>
       <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/about-visluck-hr-consultancy" component={About} />
-        <Route path="/hr-consultancy-services" component={Services} />
-        <Route path="/manpower-recruitment-consultancy" component={ManpowerRecruitment} />
-        <Route path="/hr-training-development" component={HRTraining} />
-        <Route path="/hr-process-streamlining" component={HRProcessSetup} />
-        <Route path="/hr-analytics-solutions" component={HRAnalytics} />
-        <Route path="/client-testimonials" component={Testimonials} />
-        <Route path="/careers" component={Careers} />
-        <Route path="/contact-visluck" component={Contact} />
-        <Route path="/hr-insights" component={Blog} />
+        <Route path={ROUTES.home} component={Home} />
+        <Route path={ROUTES.about} component={About} />
+        <Route path={ROUTES.services} component={Services} />
+        <Route path={ROUTES.howItWorks} component={HowItWorks} />
+        <Route path={ROUTES.why} component={WhyVisLuck} />
+        <Route path={ROUTES.faqs} component={Faqs} />
+        <Route path={ROUTES.book} component={BookConsultation} />
+        <Route path={ROUTES.privacy}>{() => <LegalPage doc="privacy" />}</Route>
+        <Route path={ROUTES.terms}>{() => <LegalPage doc="terms" />}</Route>
+        <Route path={ROUTES.cookies}>{() => <LegalPage doc="cookies" />}</Route>
+        <Route path={ROUTES.disclaimer}>{() => <LegalPage doc="disclaimer" />}</Route>
+        {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
+          <Route key={from} path={from}>
+            <Redirect to={to} replace />
+          </Route>
+        ))}
         <Route component={NotFound} />
       </Switch>
-    </Layout>
+    </Suspense>
   );
 }
 
-function App() {
+export default function App() {
   return (
     <HelmetProvider>
-      <TooltipProvider>
-        <Router />
-        <Toaster />
-      </TooltipProvider>
+      <div className="flex min-h-[100dvh] flex-col">
+        <ScrollManager />
+        <SiteHeader />
+        <main id="main" className="flex-1">
+          <PageTransition>
+            <Router />
+          </PageTransition>
+        </main>
+        <SiteFooter />
+      </div>
     </HelmetProvider>
   );
 }
-
-export default App;

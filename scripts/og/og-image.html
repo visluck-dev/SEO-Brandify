@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<style>
+  @font-face { font-family: "Manrope"; src: url("../../client/public/fonts/manrope-latin-wght-normal.woff2") format("woff2"); font-weight: 200 800; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { font-family: "Manrope", sans-serif; background: #fff; color: #0B1F3A; position: relative; }
+  .glow { position: absolute; right: -180px; top: -220px; width: 720px; height: 720px; border-radius: 50%; background: radial-gradient(closest-side, rgba(20,163,165,.22), transparent); }
+  .grid { position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, rgba(11,31,58,.08) 1px, transparent 0); background-size: 24px 24px; -webkit-mask-image: radial-gradient(ellipse 70% 60% at 65% 30%, #000 30%, transparent 75%); }
+  .wrap { position: relative; padding: 72px 80px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand span { font-weight: 800; letter-spacing: .16em; font-size: 26px; }
+  .eyebrow { margin-top: 64px; font-size: 16px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #0F7274; }
+  h1 { margin: 18px 0 0; font-size: 84px; line-height: 1.02; letter-spacing: -.03em; font-weight: 800; max-width: 900px; }
+  p { margin: 28px 0 0; font-size: 26px; line-height: 1.4; color: #3B4A5E; max-width: 760px; }
+  .chips { margin-top: auto; display: flex; gap: 14px; }
+  .chip { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; background: #E8F6F6; color: #0F7274; font-weight: 700; font-size: 20px; }
+  .chip i { width: 10px; height: 10px; border-radius: 50%; background: #14A3A5; }
+</style>
+</head>
+<body>
+  <div class="grid"></div><div class="glow"></div>
+  <div class="wrap">
+    <div class="brand">
+      <svg width="44" height="44" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="9" fill="#0B1F3A"/><path d="M8.5 9.5 16 23l7.5-13.5" stroke="#14A3A5" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="23" r="2.1" fill="#E8F6F6"/></svg>
+      <span>VISLUCK</span>
+    </div>
+    <div class="eyebrow">UK job-search support</div>
+    <h1>Your UK Job Search, Managed.</h1>
+    <p>CV optimisation, LinkedIn positioning, targeted applications, interview preparation and a dashboard that tracks it all.</p>
+    <div class="chips"><span class="chip"><i></i>UK-Focused</span><span class="chip"><i></i>Personalised</span><span class="chip"><i></i>Transparent</span></div>
+  </div>
+</body>
+</html>

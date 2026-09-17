@@ -1,50 +1,70 @@
-export const SERVICES = [
+export type Service = {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  points: readonly string[];
+  icon: "FileText" | "Linkedin" | "Compass" | "Send" | "MessagesSquare" | "LifeBuoy";
+  featured?: boolean;
+};
+
+export const SERVICES_SECTION = {
+  eyebrow: "Services",
+  title: "Everything You Need for a More Structured UK Job Search",
+} as const;
+
+export const SERVICES: readonly Service[] = [
   {
-    id: 'recruitment',
-    title: 'Manpower & Recruitment',
-    slug: 'manpower-recruitment-consultancy',
-    description: 'Hire the right talent with our comprehensive recruitment services.',
-    icon: 'Users',
-    subsections: [
-      { title: 'Permanent Staffing Solutions', description: 'Long-term talent acquisition for permanent roles across all levels.' },
-      { title: 'Contract & Temporary Staffing', description: 'Flexible staffing solutions for project-based and temporary needs.' },
-      { title: 'Executive Search', description: 'Specialized recruitment for C-suite and senior management positions.' },
-    ],
+    id: "cv-optimisation",
+    number: "01",
+    title: "CV Optimisation",
+    description:
+      "Create a professional CV aligned with UK-market expectations and your target career direction.",
+    points: ["UK-format CV", "CV restructuring", "Professional positioning", "Achievement-focused content", "ATS-conscious formatting"],
+    icon: "FileText",
+    featured: true,
   },
   {
-    id: 'training',
-    title: 'HR Training & Development',
-    slug: 'hr-training-development',
-    description: 'Professional development programs to enhance your HR team.',
-    icon: 'BookOpen',
-    subsections: [
-      { title: 'Payroll Training', description: 'Comprehensive payroll management and compliance training.' },
-      { title: 'Compliance Programs', description: 'Stay updated on labor laws and compliance requirements.' },
-      { title: 'Leadership Development', description: 'Executive coaching and leadership enhancement programs.' },
-    ],
+    id: "linkedin-optimisation",
+    number: "02",
+    title: "LinkedIn Optimisation",
+    description:
+      "Build a stronger professional presence that communicates your experience clearly to recruiters and employers.",
+    points: ["Headline optimisation", "About section", "Experience positioning", "Skills optimisation", "Profile structure"],
+    icon: "Linkedin",
   },
   {
-    id: 'process-setup',
-    title: 'HR Process Streamlining',
-    slug: 'hr-process-streamlining',
-    description: 'End-to-end HR process optimization and setup.',
-    icon: 'Workflow',
-    subsections: [
-      { title: 'Process Design', description: 'Design efficient HR workflows and procedures.' },
-      { title: 'Policy Development', description: 'Create comprehensive HR policies aligned with regulations.' },
-      { title: 'Implementation Support', description: 'Full support for implementing new HR processes.' },
-    ],
+    id: "job-search-strategy",
+    number: "03",
+    title: "Job Search Strategy",
+    description:
+      "Identify the types of roles and opportunities that align with your experience and career goals.",
+    points: ["Target role identification", "Industry mapping", "Opportunity research", "Job-market guidance", "Search strategy"],
+    icon: "Compass",
   },
   {
-    id: 'analytics',
-    title: 'HR Analytics Solutions',
-    slug: 'hr-analytics-solutions',
-    description: 'Data-driven insights for workforce optimization.',
-    icon: 'BarChart',
-    subsections: [
-      { title: 'Performance Metrics', description: 'Track and analyze key HR performance indicators.' },
-      { title: 'Attrition Analysis', description: 'Identify and reduce employee turnover.' },
-      { title: 'Workforce Planning', description: 'Optimize workforce size and composition.' },
-    ],
+    id: "application-support",
+    number: "04",
+    title: "Application Support",
+    description: "Take a more targeted approach to relevant opportunities.",
+    points: ["Job description review", "CV tailoring", "Supporting statement / cover letter support", "Application preparation", "Application tracking"],
+    icon: "Send",
+    featured: true,
+  },
+  {
+    id: "interview-preparation",
+    number: "05",
+    title: "Interview Preparation",
+    description: "Prepare with greater confidence before speaking to employers.",
+    points: ["Interview preparation", "Mock interviews", "Role research", "Company research", "Question preparation", "Feedback & improvement"],
+    icon: "MessagesSquare",
+  },
+  {
+    id: "ongoing-career-support",
+    number: "06",
+    title: "Ongoing Career Support",
+    description: "Your job search doesn’t end after clicking Apply. Receive structured support throughout your journey.",
+    points: ["Progress reviews", "Application updates", "Follow-up tracking", "Career guidance", "Dedicated support"],
+    icon: "LifeBuoy",
   },
 ];
