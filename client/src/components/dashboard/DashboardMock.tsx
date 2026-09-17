@@ -1,4 +1,5 @@
 import { BellRing } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { LogoMark } from "@/components/Logo";
 import { DASHBOARD_SAMPLE } from "@/constants/dashboard";
@@ -8,12 +9,14 @@ import { KpiTile, LiveDot, NextActions, PipelineBar, StatusPill } from "./Dashbo
 interface DashboardMockProps {
   /** Hero variant: tighter tiles, fewer rows/columns, no side panel below lg. */
   compact?: boolean;
-  /** Shows the delayed "Interview scheduled" toast hanging off the panel. */
+  /** Shows the "Interview scheduled" toast hanging off the panel. */
   withToast?: boolean;
+  /** Seconds before the toast arrives (0 = static). */
+  toastDelay?: number;
   className?: string;
 }
 
-export function DashboardMock({ compact = false, withToast = false, className }: DashboardMockProps) {
+export function DashboardMock({ compact = false, withToast = false, toastDelay = 0, className }: DashboardMockProps) {
   const d = DASHBOARD_SAMPLE;
   const rows = compact ? d.applications.slice(0, 4) : d.applications;
 
@@ -92,18 +95,25 @@ export function DashboardMock({ compact = false, withToast = false, className }:
         </div>
       </div>
 
-      {withToast && <ScheduledToast />}
+      {withToast && <ScheduledToast delay={toastDelay} />}
 
       <figcaption className="mt-3 text-center text-xs text-muted-foreground">{d.caption}</figcaption>
     </figure>
   );
 }
 
-/** Static notification card hanging off the panel (no mount animation, per ui-animation review). */
-function ScheduledToast() {
+/** Notification card hanging off the panel; arrives after `delay` seconds (static when 0 or reduced motion). */
+function ScheduledToast({ delay }: { delay: number }) {
+  const reduce = useReducedMotion();
   const t = DASHBOARD_SAMPLE.toast;
+  const animated = delay > 0 && !reduce;
   return (
-    <div className="absolute -bottom-3 left-3 hidden sm:block lg:-left-8 lg:bottom-4">
+    <motion.div
+      className="absolute -bottom-3 left-3 hidden sm:block lg:-left-8 lg:bottom-4"
+      initial={animated ? { opacity: 0, y: 12, scale: 0.96 } : false}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ delay, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className="flex items-center gap-3 rounded-xl border border-hairline bg-white px-3.5 py-2.5 shadow-toast">
         <span className="flex size-8 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
           <BellRing className="size-4" aria-hidden="true" />
@@ -113,6 +123,6 @@ function ScheduledToast() {
           <span className="text-muted-foreground">{t.detail}</span>
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 }

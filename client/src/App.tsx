@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from "react";
 import { Redirect, Route, Switch, useLocation } from "wouter";
 import { HelmetProvider } from "react-helmet-async";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -47,6 +48,22 @@ function ScrollManager() {
   return null;
 }
 
+/** Each route enters with a short fade + 6px rise (instant under reduced motion). */
+function PageTransition({ children }: { children: React.ReactNode }) {
+  const [location] = useLocation();
+  const reduce = useReducedMotion();
+  return (
+    <motion.div
+      key={location}
+      initial={reduce ? false : { opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 function Router() {
   return (
     <Suspense fallback={<div className="min-h-[50vh]" aria-busy="true" />}>
@@ -80,7 +97,9 @@ export default function App() {
         <ScrollManager />
         <SiteHeader />
         <main id="main" className="flex-1">
-          <Router />
+          <PageTransition>
+            <Router />
+          </PageTransition>
         </main>
         <SiteFooter />
       </div>
