@@ -164,6 +164,24 @@
   .tabular {
     font-variant-numeric: tabular-nums;
   }
+
+  /* Hero dashboard story (components/dashboard/LiveDashboard.tsx) */
+  .row-flash {
+    animation: row-flash 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .story-progress {
+    animation: story-progress 4500ms linear forwards;
+  }
+}
+
+@keyframes row-flash {
+  from { background-color: #e8f6f6; }
+  to { background-color: transparent; }
+}
+
+@keyframes story-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 @layer utilities {

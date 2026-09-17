@@ -4,7 +4,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/Container";
-import { DashboardMock } from "@/components/dashboard/DashboardMock";
+import { LiveDashboard } from "@/components/dashboard/LiveDashboard";
 import { CTA } from "@/constants/site";
 import { HERO } from "@/constants/home";
 
@@ -77,7 +77,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div variants={panel} initial={initial} animate="show" className="lg:-mr-6 xl:mr-0">
-          <DashboardMock compact withToast toastDelay={1.2} />
+          <LiveDashboard />
         </motion.div>
       </Container>
     </section>

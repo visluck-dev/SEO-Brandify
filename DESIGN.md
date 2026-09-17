@@ -74,7 +74,7 @@ Purple/neon gradients · pure black · glows · saturated reds outside error tex
 - Only `transform` and `opacity` (+ colour for state). Never layout properties. Never `transition: all`.
 - Hover: 150ms; colour changes 200ms; reveals 250–300ms; easing `cubic-bezier(0.22, 1, 0.36, 1)`.
 - **No animation on first paint above the fold** (LCP + the ui-animation rule). Below the fold, only staggered lists and grids (services, steps, why, audiences, metrics) use a single fade + 8px rise, once, 40ms stagger, ≤ 300ms total; text blocks and the product dashboard never scroll-reveal.
-- Nothing animates on mount. The dashboard's live dot pulses perpetually (2s, opacity/scale only) and is the one looping micro-interaction.
+- **Hero:** copy rises in a 90ms stagger, the dashboard settles in after it, then the dashboard plays a four-scene story (Apply → Shortlist → Interview → Follow-up, 4.5s each, looping): rows slide in, KPIs count up, status pills swap, a notification card narrates. Visitors can drive it with the scene tabs (which stops autoplay); hover/focus, off-screen and hidden tabs pause it. Everything else renders static on mount; the live dot is the one perpetual loop.
 - Accordion uses Radix height variables at 200ms; sheet (mobile nav) slides 300ms open / 200ms close with the drawer curve `cubic-bezier(0.32, 0.72, 0, 1)`.
 - `prefers-reduced-motion: reduce` → all of the above become instant; the pulse stops.
 
