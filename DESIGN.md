@@ -67,6 +67,7 @@ Purple/neon gradients · pure black · glows · saturated reds outside error tex
 - Section rhythm `clamp(3.5rem, 8vw, 7rem)` vertical; sections alternate Paper / Mist; exactly one navy band (final CTA) plus the navy footer.
 - **Hero:** split layout — copy left (≈ 45 %), dashboard right (≈ 55 %), single primary CTA, three proof chips beneath. No centred hero.
 - **Feature sections:** never "3 equal cards". Services use a 2 + 4 asymmetric bento (two featured, four compact); How-it-works is a vertical timeline with a sticky heading column; Why VisLuck is a divider-based 2-column list; audiences are a 4-up on desktop that collapses 2 → 1.
+- **Workspace (`/demo`, `/app`, `/ops`):** its own shell, not the marketing chrome — Mist page background, white sidebar (16rem, ≥ lg) with a hairline right border, white top bar (3.5rem), content `max-width: 1200px`; phones get a bottom tab bar (four daily screens + More). Panels are white, radius 1rem, hairline border, `card` shadow. Density here is `7`: tables use a Fog header and hairline rows, KPI tiles use tabular numerals. Every empty state is a dashed Mist panel that names the next event and its date.
 - Full-height never uses `h-screen`; `min-h-[100dvh]` only if needed.
 - Mobile-first: every multi-column layout collapses to one column below 768px; no horizontal scroll at 375px; body text ≥ 1rem; touch targets ≥ 44px.
 
