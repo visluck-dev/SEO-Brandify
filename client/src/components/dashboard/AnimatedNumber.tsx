@@ -19,7 +19,12 @@ export function AnimatedNumber({ value, className }: { value: number; className?
       ease: [0.22, 1, 0.36, 1],
       onUpdate: (v) => setShown(Math.round(v)),
     });
-    return () => controls.stop();
+    // Background tabs pause requestAnimationFrame; make sure the final value still lands.
+    const settle = window.setTimeout(() => setShown(value), 700);
+    return () => {
+      controls.stop();
+      window.clearTimeout(settle);
+    };
   }, [value, reduce]);
 
   return <span className={className}>{shown}</span>;

@@ -14,8 +14,10 @@ const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
 const WhyVisLuck = lazy(() => import("@/pages/WhyVisLuck"));
 const Faqs = lazy(() => import("@/pages/Faqs"));
 const BookConsultation = lazy(() => import("@/pages/BookConsultation"));
+const SignIn = lazy(() => import("@/pages/SignIn"));
 const LegalPage = lazy(() => import("@/pages/legal/LegalPage"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
+const WorkspaceRoot = lazy(() => import("@/workspace"));
 
 /** Old employer-consultancy URLs that are still indexed → nearest new page. */
 const LEGACY_REDIRECTS: Record<string, string> = {
@@ -31,6 +33,9 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   "/careers": ROUTES.home,
   "/hr-insights": ROUTES.home,
 };
+
+/** Routes that render the product shell instead of the marketing header and footer. */
+const WORKSPACE_PREFIXES = [ROUTES.demo, ROUTES.ops];
 
 function ScrollManager() {
   const [location] = useLocation();
@@ -75,6 +80,7 @@ function Router() {
         <Route path={ROUTES.why} component={WhyVisLuck} />
         <Route path={ROUTES.faqs} component={Faqs} />
         <Route path={ROUTES.book} component={BookConsultation} />
+        <Route path={ROUTES.signIn} component={SignIn} />
         <Route path={ROUTES.privacy}>{() => <LegalPage doc="privacy" />}</Route>
         <Route path={ROUTES.terms}>{() => <LegalPage doc="terms" />}</Route>
         <Route path={ROUTES.cookies}>{() => <LegalPage doc="cookies" />}</Route>
@@ -90,19 +96,33 @@ function Router() {
   );
 }
 
+function MarketingSite() {
+  return (
+    <div className="flex min-h-[100dvh] flex-col">
+      <ScrollManager />
+      <SiteHeader />
+      <main id="main" className="flex-1">
+        <PageTransition>
+          <Router />
+        </PageTransition>
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}
+
 export default function App() {
+  const [location] = useLocation();
+  const isWorkspace = WORKSPACE_PREFIXES.some((p) => location === p || location.startsWith(`${p}/`));
   return (
     <HelmetProvider>
-      <div className="flex min-h-[100dvh] flex-col">
-        <ScrollManager />
-        <SiteHeader />
-        <main id="main" className="flex-1">
-          <PageTransition>
-            <Router />
-          </PageTransition>
-        </main>
-        <SiteFooter />
-      </div>
+      {isWorkspace ? (
+        <Suspense fallback={<div className="min-h-[100dvh] bg-mist" aria-busy="true" />}>
+          <WorkspaceRoot />
+        </Suspense>
+      ) : (
+        <MarketingSite />
+      )}
     </HelmetProvider>
   );
 }

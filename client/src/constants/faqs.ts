@@ -3,7 +3,9 @@ export const FAQ_SECTION = {
   title: "Frequently Asked Questions",
 } as const;
 
-export const FAQS = [
+export type Faq = { question: string; answer: string; link?: { label: string; href: string } };
+
+export const FAQS: readonly Faq[] = [
   {
     question: "Do you guarantee a job?",
     answer: "No. We do not guarantee employment, interviews or job offers. Hiring decisions are made by employers.",
@@ -34,6 +36,7 @@ export const FAQS = [
     question: "How do I track my applications?",
     answer:
       "Clients receive access to their personalised VisLuck dashboard, where application activity and relevant progress can be organised and tracked.",
+    link: { label: "Try the dashboard with sample data", href: "/demo" },
   },
   {
     question: "Will you apply to every job I send?",
@@ -44,4 +47,4 @@ export const FAQS = [
     answer:
       "Book a free consultation. Our team will understand your profile and career goals and explain the next steps.",
   },
-] as const;
+];

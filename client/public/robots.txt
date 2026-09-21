@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /app$
+Disallow: /app/
+Disallow: /ops$
+Disallow: /ops/
+Disallow: /demo$
+Disallow: /demo/
 
 Sitemap: https://visluck.com/sitemap.xml
