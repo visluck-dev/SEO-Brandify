@@ -1,6 +1,11 @@
+import { Link } from "wouter";
+import { Play } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 import { Section, SectionHeader } from "@/components/layout/Section";
 import { DashboardMock } from "@/components/dashboard/DashboardMock";
 import { DASHBOARD_SECTION } from "@/constants/home-sections";
+import { ROUTES } from "@/constants/site";
 
 export function DashboardShowcase({ tone = "paper" }: { tone?: "paper" | "mist" }) {
   const d = DASHBOARD_SECTION;
@@ -47,6 +52,11 @@ export function DashboardShowcase({ tone = "paper" }: { tone?: "paper" | "mist" 
             ))}
           </ul>
           <p className="mt-8 font-display text-xl font-bold text-ink">{d.closing}</p>
+          <Button asChild size="lg" variant="outline" className="mt-6">
+            <Link href={ROUTES.demo}>
+              <Play aria-hidden="true" /> Try the dashboard with sample data
+            </Link>
+          </Button>
         </div>
       </div>
     </Section>

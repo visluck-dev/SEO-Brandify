@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Logo } from "@/components/Logo";
 import { Container } from "@/components/layout/Container";
-import { CTA, NAV_LINKS } from "@/constants/site";
+import { CTA, NAV_LINKS, ROUTES } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -68,7 +68,10 @@ export function SiteHeader() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <Button asChild variant="ghost" className="hidden md:inline-flex">
+              <Link href={ROUTES.signIn}>Log in</Link>
+            </Button>
             <Button asChild className="hidden sm:inline-flex">
               <Link href={CTA.href}>{CTA.label}</Link>
             </Button>
@@ -107,12 +110,24 @@ export function SiteHeader() {
                       })}
                     </ul>
                   </nav>
-                  <div className="border-t border-hairline p-4">
+                  <div className="space-y-2 border-t border-hairline p-4">
                     <Button asChild size="lg" className="w-full">
                       <Link href={CTA.href} onClick={() => setOpen(false)}>
                         {CTA.label}
                       </Link>
                     </Button>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Button asChild size="md" variant="outline">
+                        <Link href={ROUTES.demo} onClick={() => setOpen(false)}>
+                          Try the dashboard
+                        </Link>
+                      </Button>
+                      <Button asChild size="md" variant="ghost">
+                        <Link href={ROUTES.signIn} onClick={() => setOpen(false)}>
+                          Log in
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </SheetContent>

@@ -37,7 +37,14 @@ export function FaqSection({ limit, tone = "paper", lead, titleAs = "h2" }: FaqS
                 <AccordionTrigger className="py-5 text-left font-display text-base font-bold text-ink hover:no-underline hover:text-teal-700 md:text-lg [&>svg]:size-5 [&>svg]:text-teal-600">
                   {f.question}
                 </AccordionTrigger>
-                <AccordionContent className="pb-6 text-base leading-relaxed text-body">{f.answer}</AccordionContent>
+                <AccordionContent className="pb-6 text-base leading-relaxed text-body">
+                  {f.answer}
+                  {f.link && (
+                    <Link href={f.link.href} className="mt-3 inline-flex items-center gap-1.5 font-display text-sm font-semibold text-teal-700 underline-offset-4 hover:underline">
+                      {f.link.label} <ArrowRight className="size-4" aria-hidden="true" />
+                    </Link>
+                  )}
+                </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

@@ -1,11 +1,11 @@
 import { Link } from "wouter";
-import { Check } from "lucide-react";
+import { Check, Play } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/Container";
 import { LiveDashboard } from "@/components/dashboard/LiveDashboard";
-import { CTA } from "@/constants/site";
+import { CTA, ROUTES } from "@/constants/site";
 import { HERO } from "@/constants/home";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -58,9 +58,14 @@ export function Hero() {
             {HERO.tagline}
           </motion.p>
 
-          <motion.div variants={rise} className="mt-8">
+          <motion.div variants={rise} className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button asChild size="xl" className="w-full sm:w-auto">
               <Link href={CTA.href}>{CTA.label}</Link>
+            </Button>
+            <Button asChild size="xl" variant="ghost" className="w-full sm:w-auto">
+              <Link href={ROUTES.demo}>
+                <Play aria-hidden="true" /> Try the dashboard
+              </Link>
             </Button>
           </motion.div>
 

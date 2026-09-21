@@ -27,8 +27,14 @@ npm run check     # TypeScript
 | `client/src/components/sections/` | Page sections composed by `client/src/pages/*` |
 | `client/src/components/dashboard/` | The illustrative candidate dashboard: `LiveDashboard` (hero story, scenes in `constants/dashboard-story.ts`) and the static `DashboardMock` |
 | `client/src/components/forms/` | Consultation form (schema, fields, success state) |
+| `client/src/workspace/` | **The candidate workspace** (Phase A prototype + public demo at `/demo`): `data/` (domain types = the backend contract, `deriveState`, the `WorkspaceData` interface and the mock journey), `shell/`, `pages/`, and `ops/` (consultant console wireframe at `/ops`) |
+| `PRODUCT.md`, `docs/API.md` | Product definition (promise, retention model, screens, ops rules, metrics) and the API contract the backend implements |
 | `client/public/` | Favicons, `og-image.png`, `robots.txt`, `sitemap.xml`, `CNAME` |
 | `scripts/og/` | HTML templates used to render the PNG assets with headless Edge/Chrome |
+
+## The workspace demo
+
+`/demo` runs the full candidate workspace on a fictional eight-week journey (`client/src/workspace/data/mock/journey.ts`). The strip at the top switches between three moments — week 1, week 5 (default) and after placement — and *Replay first run* opens the onboarding flow at `/demo/start`. Everything you click (approve a role, submit a debrief, complete a task) updates the in-memory data until the page reloads. `/ops` is the consultant console wireframe: quick-log an application, change a stage, log a follow-up or reply, schedule an interview, assign a task, draft and publish a weekly report. `/app` is the client sign-in page, which points to the demo until Phase B wires the backend.
 
 ## Content switches
 
